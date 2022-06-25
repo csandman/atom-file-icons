@@ -1,0 +1,67 @@
+{
+  "name": "atom-file-icons",
+  "version": "1.0.0",
+  "description": "File specific icons for JavaScript. A port of the file-icons/atom package.",
+  "license": "MIT",
+  "author": "Chris Sandvik <chris.sandvik@gmail.com>",
+  "homepage": "https://github.com/csandman/atom-file-icons#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csandman/atom-file-icons.git"
+  },
+  "bugs": {
+    "url": "https://github.com/csandman/atom-file-icons/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "prebuild": "rimraf dist/",
+    "postbuild": "node scripts/post-build.js",
+    "build": "microbundle -f esm,cjs",
+    "dev": "microbundle watch -f esm,cjs",
+    "format": "prettier --write . && prettier-package-json --write",
+    "lint": "npm run lint:code && npm run lint:types",
+    "lint:code": "eslint .",
+    "lint:types": "tsc --noEmit",
+    "prepare": "husky install",
+    "update-assets": "node scripts/update-assets.js"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsdoc": "^39.3.3",
+    "eslint-plugin-tsdoc": "^0.2.16",
+    "fs-extra": "^10.1.0",
+    "husky": "^8.0.1",
+    "less": "^4.1.3",
+    "lint-staged": "^13.0.3",
+    "microbundle": "^0.15.0",
+    "prettier": "^2.7.1",
+    "prettier-package-json": "^2.6.4",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4"
+  },
+  "keywords": [
+    "atom",
+    "file-icons",
+    "icon",
+    "icons"
+  ],
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.--write": "prettier --write"
+  },
+  "source": "src/index.ts"
+}
