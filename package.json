@@ -18,12 +18,10 @@
   "files": [
     "dist"
   ],
-  "types": "./dist/index.d.ts",
-  "typings": "./dist/index.d.ts",
   "scripts": {
     "prebuild": "rimraf dist/",
-    "postbuild": "node scripts/post-build.js",
     "build": "microbundle -f esm,cjs",
+    "postbuild": "node scripts/post-build.js",
     "dev": "microbundle watch -f esm,cjs",
     "format": "prettier --write . && prettier-package-json --write",
     "lint": "npm run lint:code && npm run lint:types",
@@ -32,6 +30,8 @@
     "prepare": "husky install",
     "update-assets": "node scripts/update-assets.js"
   },
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "devDependencies": {
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
@@ -59,6 +59,10 @@
     "icon",
     "icons"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.--write": "prettier --write"
