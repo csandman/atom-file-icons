@@ -48,10 +48,10 @@ const DEFAULT_GET_CLASS_OPTIONS: GetClassOptions = {
 };
 
 /**
- * Get icon class name of the provided filename. If not found, default to text icon.
+ * Get a joined icon class name of the provided filename. If not found, default to text icon.
  *
- * @param name - file name
- * @returns the icon's class
+ * @param name - File name
+ * @returns A joined class string to apply to the icon's element
  */
 export function getIconClass(
   name: string,
@@ -81,10 +81,10 @@ export function getIconClass(
 }
 
 /**
- * Get icon class name of the provided filename. If not found, default to text icon.
+ * Get an array of icon classese for the provided filename. If not found, default to text icon.
  *
- * @param name - file name
- * @returns the icon's class
+ * @param name - File name
+ * @returns A list of classes to apply to the icon's element
  */
 export function getIconClassList(
   name: string,
