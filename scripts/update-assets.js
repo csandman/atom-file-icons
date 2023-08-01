@@ -123,7 +123,9 @@ const downloadDb = async () => {
   await downloadFile(icondb);
 
   const dbFile = await readFile(icondb.path, 'utf8');
-  const newDbFile = dbFile.replace('module.exports =', 'export default');
+  let newDbFile = dbFile.replace('module.exports =', 'export default');
+  // Replace the lookaround regex for Safari compatibility
+  newDbFile = newDbFile.replace(/\(\?<?=(.+?)(?<!\\)\)/g, '($1)');
   await writeFile(icondb.path, newDbFile);
 
   console.log('Finished downloading icondb');

@@ -34,14 +34,18 @@ jobs:
 
       - name: Commit updated files
         if: steps.diff.outputs.has_changes == 'true'
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v9
         with:
           add: '.'
           message: '[auto] update assets'
 
       - name: NPM Version
         if: steps.diff.outputs.has_changes == 'true'
-        run: npm version patch && git push"
+        run: npm version patch
+
+      - name: Push changes
+        if: steps.diff.outputs.has_changes == 'true'
+        run: git push
 
       - name: Build and Publish
         if: steps.diff.outputs.has_changes == 'true'
@@ -50,6 +54,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: get-npm-version
+        if: steps.diff.outputs.has_changes == 'true'
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
 
