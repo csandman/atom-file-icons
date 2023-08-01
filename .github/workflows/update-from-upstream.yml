@@ -1,10 +1,7 @@
-name: Auto Update when upstream releases
+name: Auto Update when upstream changes
 on:
   schedule:
     - cron: '0 3 * * *'
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
