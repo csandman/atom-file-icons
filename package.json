@@ -28,6 +28,7 @@
     "lint:code": "eslint .",
     "lint:types": "tsc --noEmit",
     "prepare": "husky install",
+    "prepublishOnly": "npm run build",
     "update-assets": "node scripts/update-assets.js"
   },
   "types": "./dist/index.d.ts",
