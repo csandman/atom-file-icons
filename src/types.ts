@@ -18,7 +18,7 @@ export type IconBase = [
   /** to match alias patterns */
   RegExp?,
   /** to match file signatures */
-  RegExp?
+  RegExp?,
 ];
 
 export type IconDbItem = [IconBase[], number[][], Record<string, number>];

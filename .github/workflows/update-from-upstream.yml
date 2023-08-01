@@ -24,39 +24,39 @@ jobs:
         id: diff
         run: |
           if [[ `git status --porcelain` ]]; then
-            echo ::set-output name=has_changes::true
+            echo "HAS_CHANGES=true" >> "$GITHUB_OUTPUT"
           else
-            echo ::set-output name=has_changes::false
+            echo "HAS_CHANGES=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Commit updated files
-        if: steps.diff.outputs.has_changes == 'true'
+        if: steps.diff.outputs.HAS_CHANGES == 'true'
         uses: EndBug/add-and-commit@v9
         with:
           add: '.'
           message: '[auto] update assets'
 
       - name: NPM Version
-        if: steps.diff.outputs.has_changes == 'true'
+        if: steps.diff.outputs.HAS_CHANGES == 'true'
         run: npm version patch
 
       - name: Push changes
-        if: steps.diff.outputs.has_changes == 'true'
+        if: steps.diff.outputs.HAS_CHANGES == 'true'
         run: git push
 
       - name: Build and Publish
-        if: steps.diff.outputs.has_changes == 'true'
+        if: steps.diff.outputs.HAS_CHANGES == 'true'
         run: npm run build && npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: get-npm-version
-        if: steps.diff.outputs.has_changes == 'true'
+        if: steps.diff.outputs.HAS_CHANGES == 'true'
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
 
       - name: Release
-        if: steps.diff.outputs.has_changes == 'true'
+        if: steps.diff.outputs.HAS_CHANGES == 'true'
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

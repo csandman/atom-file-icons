@@ -1,18 +1,20 @@
 import Icon from './icon';
 import type { IconDb, IconDbItem } from '../types';
 
-export interface Cache {
-  directoryName: Record<string, Icon>;
-  directoryPath: Record<string, Icon>;
-  fileName: Record<string, Icon>;
-  filePath: Record<string, Icon>;
-  interpreter: Record<string, Icon>;
-  scope: Record<string, Icon>;
-  language: Record<string, Icon>;
-  signature: Record<string, Icon>;
+export type IconMap = Record<string, Icon>;
+
+export interface IconCache {
+  directoryName: IconMap;
+  directoryPath: IconMap;
+  fileName: IconMap;
+  filePath: IconMap;
+  interpreter: IconMap;
+  scope: IconMap;
+  language: IconMap;
+  signature: IconMap;
 }
 
-const cache: Cache = {
+const cache: IconCache = {
   directoryName: {},
   directoryPath: {},
   fileName: {},
@@ -82,13 +84,13 @@ export default class IconTables {
    * Match an icon using a resource's basename.
    *
    * @param name - Name of filesystem entity
-   * @param directory - Match folders instead of files
+   * @param isDirectory - Match folders instead of files
    */
-  matchName(name: string, directory = false): Icon | null {
-    const cachedIcons: Record<string, Icon> = directory
+  matchName(name: string, isDirectory = false): Icon | null {
+    const cachedIcons: IconMap = isDirectory
       ? cache.directoryName
       : cache.fileName;
-    const icons = directory
+    const icons = isDirectory
       ? this.directoryIcons.byName
       : this.fileIcons.byName;
 

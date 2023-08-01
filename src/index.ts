@@ -2,7 +2,7 @@ import './css/colors.css';
 import './css/fonts.css';
 import './css/icons.css';
 
-export type { IconTable } from './classes/icon-tables';
+export type { IconTable, IconMap, IconCache } from './classes/icon-tables';
 export { default as IconTables } from './classes/icon-tables';
 export { default as Icon } from './classes/icon';
 

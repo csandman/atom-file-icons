@@ -2,7 +2,7 @@ import childProcess from 'child_process';
 import { existsSync, createWriteStream, promises as fsPromises } from 'fs';
 import https from 'https';
 import { promisify } from 'util';
-import rimraf from 'rimraf';
+import { rimraf } from 'rimraf';
 
 const { readFile, writeFile } = fsPromises;
 
@@ -10,7 +10,6 @@ const exec = promisify(childProcess.exec);
 
 /**
  * Check if a directory exists, and if it does not, create it
- *
  * @param {string} dir The path of the directory to create
  */
 async function mkdir(dir) {
@@ -21,27 +20,17 @@ async function mkdir(dir) {
 
 /**
  * Remove a file or directory
- *
  * @param {string} filePath The source folder/file path
  * @param {object} opts The options to pass to rimraf https://www.npmjs.com/package/rimraf#options
  * @returns {Promise} A promise which throws if the process fails
  */
 function rm(filePath, opts = {}) {
   const defaultOpts = { glob: false };
-
-  return new Promise((resolve, reject) => {
-    rimraf(filePath, { ...defaultOpts, ...opts }, (err) => {
-      if (err) {
-        reject(err);
-      }
-      resolve();
-    });
-  });
+  return rimraf(filePath, { ...defaultOpts, ...opts });
 }
 
 /**
  * Download a file from a URL to a local path
- *
  * @param {object} file The file to download
  * @param {string} file.url The URL to download from
  * @param {string} file.path The local path to save the file to
@@ -70,7 +59,6 @@ function downloadFile(file) {
 
 /**
  * Download the less stylesheets for the file-icons package and compile them to css
- *
  * @see https://github.com/file-icons/atom/tree/master/styles
  */
 const downloadStyles = async () => {

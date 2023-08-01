@@ -57,7 +57,8 @@
       "files": ["scripts/*"],
       "extends": ["plugin:jsdoc/recommended"],
       "rules": {
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "tsdoc/syntax": "off"
       }
     },
     {
