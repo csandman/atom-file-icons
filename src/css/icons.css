@@ -163,6 +163,12 @@
   top: 1px;
   content: "\f013";
 }
+.icon-file-pdf:before {
+  font-family: "Octicons Regular";
+  font-size: 16px;
+  top: 1px;
+  content: "\f014";
+}
 /*============================================================================*
   FontAwesome
   https://fontawesome.com/v4.7.0/cheatsheet/
